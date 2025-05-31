@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -22,7 +21,7 @@ const GreenStore = () => {
       brand: "EcoWear",
       price: 29.99,
       carbonScore: 85,
-      image: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?auto=format&fit=crop&w=400&q=80",
+      image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=400&q=80",
       packaging: "Biodegradable",
       groupBuyPrice: 24.99,
       groupBuyMinimum: 10,
@@ -35,7 +34,7 @@ const GreenStore = () => {
       brand: "HydroGreen", 
       price: 24.99,
       carbonScore: 78,
-      image: "https://images.unsplash.com/photo-1582562124811-c09040d0a901?auto=format&fit=crop&w=400&q=80",
+      image: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=400&q=80",
       packaging: "Recyclable",
       groupBuyPrice: 19.99,
       groupBuyMinimum: 15,
@@ -48,7 +47,7 @@ const GreenStore = () => {
       brand: "SunCharge",
       price: 49.99,
       carbonScore: 72,
-      image: "https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&w=400&q=80",
+      image: "https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?auto=format&fit=crop&w=400&q=80",
       packaging: "Minimal",
       groupBuyPrice: 42.99,
       groupBuyMinimum: 8,
@@ -61,7 +60,7 @@ const GreenStore = () => {
       brand: "PaperCycle",
       price: 18.99,
       carbonScore: 90,
-      image: "https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=400&q=80",
+      image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=400&q=80",
       packaging: "Biodegradable",
       groupBuyPrice: 15.99,
       groupBuyMinimum: 20,
@@ -74,7 +73,7 @@ const GreenStore = () => {
       brand: "NaturGlow",
       price: 39.99,
       carbonScore: 82,
-      image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80",
+      image: "https://images.unsplash.com/photo-1556228578-8c89e6adf883?auto=format&fit=crop&w=400&q=80",
       packaging: "Glass",
       groupBuyPrice: 34.99,
       groupBuyMinimum: 12,
@@ -87,7 +86,7 @@ const GreenStore = () => {
       brand: "EcoCarry",
       price: 68.99,
       carbonScore: 75,
-      image: "https://images.unsplash.com/photo-1518495973542-4542c06a5843?auto=format&fit=crop&w=400&q=80",
+      image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=400&q=80",
       packaging: "Recyclable",
       groupBuyPrice: 59.99,
       groupBuyMinimum: 6,
