@@ -1,13 +1,18 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu } from "lucide-react";
+import { Menu, User, LogOut } from "lucide-react";
+import { useAuth } from "@/hooks/useAuth";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const { user, loading } = useAuth();
+  const { toast } = useToast();
 
   const navLinks = [
     { href: "/", label: "Home" },
@@ -19,6 +24,22 @@ const Navigation = () => {
   ];
 
   const isActive = (href: string) => location.pathname === href;
+
+  const handleSignOut = async () => {
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      toast({
+        title: "Error",
+        description: "Failed to sign out",
+        variant: "destructive",
+      });
+    } else {
+      toast({
+        title: "Success",
+        description: "You have been signed out",
+      });
+    }
+  };
 
   return (
     <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
@@ -43,10 +64,32 @@ const Navigation = () => {
             ))}
           </div>
 
-          <div className="hidden md:flex">
-            <Button className="bg-[#007A3D] hover:bg-[#005A2D] text-white">
-              Get Started
-            </Button>
+          {/* Desktop Auth Section */}
+          <div className="hidden md:flex items-center space-x-4">
+            {loading ? (
+              <div className="w-8 h-8 animate-spin rounded-full border-2 border-[#007A3D] border-t-transparent"></div>
+            ) : user ? (
+              <>
+                <Button asChild variant="ghost" className="text-[#007A3D]">
+                  <Link to="/dashboard">
+                    <User className="h-4 w-4 mr-2" />
+                    Dashboard
+                  </Link>
+                </Button>
+                <Button 
+                  onClick={handleSignOut}
+                  variant="outline"
+                  className="text-[#007A3D] border-[#007A3D] hover:bg-[#007A3D] hover:text-white"
+                >
+                  <LogOut className="h-4 w-4 mr-2" />
+                  Sign Out
+                </Button>
+              </>
+            ) : (
+              <Button asChild className="bg-[#007A3D] hover:bg-[#005A2D] text-white">
+                <Link to="/auth">Get Started</Link>
+              </Button>
+            )}
           </div>
 
           {/* Mobile Navigation */}
@@ -70,9 +113,43 @@ const Navigation = () => {
                     {link.label}
                   </Link>
                 ))}
-                <Button className="bg-[#007A3D] hover:bg-[#005A2D] text-white mt-4">
-                  Get Started
-                </Button>
+                
+                {loading ? (
+                  <div className="w-8 h-8 animate-spin rounded-full border-2 border-[#007A3D] border-t-transparent mx-auto mt-4"></div>
+                ) : user ? (
+                  <>
+                    <Button 
+                      asChild 
+                      variant="ghost" 
+                      className="text-[#007A3D] mt-4"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      <Link to="/dashboard">
+                        <User className="h-4 w-4 mr-2" />
+                        Dashboard
+                      </Link>
+                    </Button>
+                    <Button 
+                      onClick={() => {
+                        handleSignOut();
+                        setIsOpen(false);
+                      }}
+                      variant="outline"
+                      className="text-[#007A3D] border-[#007A3D] hover:bg-[#007A3D] hover:text-white"
+                    >
+                      <LogOut className="h-4 w-4 mr-2" />
+                      Sign Out
+                    </Button>
+                  </>
+                ) : (
+                  <Button 
+                    asChild 
+                    className="bg-[#007A3D] hover:bg-[#005A2D] text-white mt-4"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <Link to="/auth">Get Started</Link>
+                  </Button>
+                )}
               </div>
             </SheetContent>
           </Sheet>

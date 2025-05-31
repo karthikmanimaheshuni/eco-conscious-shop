@@ -40,8 +40,8 @@ const Index = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 mt-8">
                 <Button asChild size="lg" className="bg-[#007A3D] hover:bg-[#005A2D] text-white">
-                  <Link to="/store">
-                    Explore the Green Store
+                  <Link to="/auth">
+                    Get Started
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
@@ -105,7 +105,7 @@ const Index = () => {
             Join thousands of conscious consumers making a difference, one purchase at a time.
           </p>
           <Button asChild size="lg" variant="secondary" className="bg-white text-[#007A3D] hover:bg-gray-100">
-            <Link to="/store">
+            <Link to="/auth">
               Start Shopping Sustainably
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>

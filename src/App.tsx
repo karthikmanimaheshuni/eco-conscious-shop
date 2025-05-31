@@ -10,9 +10,12 @@ import Problem from "./pages/Problem";
 import Solution from "./pages/Solution";
 import ProductGrading from "./pages/ProductGrading";
 import GreenStore from "./pages/GreenStore";
+import Auth from "./pages/Auth";
+import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const queryClient = new QueryClient();
 
@@ -32,6 +35,15 @@ const App = () => (
               <Route path="/solution" element={<Solution />} />
               <Route path="/grading" element={<ProductGrading />} />
               <Route path="/store" element={<GreenStore />} />
+              <Route path="/auth" element={<Auth />} />
+              <Route 
+                path="/dashboard" 
+                element={
+                  <ProtectedRoute>
+                    <Dashboard />
+                  </ProtectedRoute>
+                } 
+              />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
