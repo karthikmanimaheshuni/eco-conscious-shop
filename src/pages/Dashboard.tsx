@@ -9,7 +9,6 @@ import { User } from "@supabase/supabase-js";
 
 const Dashboard = () => {
   const [user, setUser] = useState<User | null>(null);
-  const [profile, setProfile] = useState<any>(null);
   const navigate = useNavigate();
   const { toast } = useToast();
 
@@ -23,19 +22,6 @@ const Dashboard = () => {
       }
 
       setUser(session.user);
-
-      // Get user profile
-      const { data: profileData, error } = await supabase
-        .from("profiles")
-        .select("*")
-        .eq("id", session.user.id)
-        .single();
-
-      if (error) {
-        console.error("Error fetching profile:", error);
-      } else {
-        setProfile(profileData);
-      }
     };
 
     getUser();
@@ -80,13 +66,16 @@ const Dashboard = () => {
     );
   }
 
+  // Get display name from user metadata or email
+  const displayName = user.user_metadata?.full_name || user.email;
+
   return (
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-8 flex justify-between items-center">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">
-              Welcome back, {profile?.full_name || user.email}!
+              Welcome back, {displayName}!
             </h1>
             <p className="text-gray-600">Your sustainable shopping dashboard</p>
           </div>
