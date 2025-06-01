@@ -9,58 +9,105 @@ const Logo = ({ className = "h-8 w-auto" }: LogoProps) => {
   return (
     <div className={`flex items-center ${className}`}>
       <svg
-        viewBox="0 0 40 40"
-        className="h-8 w-8 mr-2"
+        viewBox="0 0 180 40"
+        className="h-8 w-auto mr-2"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        {/* Outer circle representing earth */}
-        <circle
+        {/* Tree trunk */}
+        <rect
+          x="18"
+          y="15"
+          width="4"
+          height="15"
+          fill="#8B4513"
+          rx="2"
+        />
+        
+        {/* Tree leaves/canopy */}
+        <ellipse
           cx="20"
-          cy="20"
-          r="18"
-          fill="#007A3D"
-          stroke="#005A2D"
+          cy="12"
+          rx="8"
+          ry="6"
+          fill="#228B22"
+        />
+        <ellipse
+          cx="16"
+          cy="8"
+          rx="6"
+          ry="4"
+          fill="#32CD32"
+        />
+        <ellipse
+          cx="24"
+          cy="8"
+          rx="6"
+          ry="4"
+          fill="#32CD32"
+        />
+        
+        {/* Root curling around 'c' in Eco */}
+        <path
+          d="M16 30 Q12 32 8 30 Q6 28 8 26 Q12 28 16 30"
+          stroke="#8B4513"
           strokeWidth="2"
+          fill="none"
         />
         
-        {/* Leaf shape */}
+        {/* Root curling around 'o' in Eco */}
         <path
-          d="M12 20C12 16 16 12 20 12C24 12 28 16 28 20C28 24 24 20 20 20C16 20 12 24 12 20Z"
-          fill="#00A651"
+          d="M20 30 Q24 32 28 30 Q30 28 28 26 Q24 28 20 30"
+          stroke="#8B4513"
+          strokeWidth="2"
+          fill="none"
         />
         
-        {/* Leaf vein */}
+        {/* Root curling around 'p' in Shop */}
         <path
-          d="M20 12C20 12 18 16 20 20C22 16 20 12 20 12Z"
-          stroke="#007A3D"
-          strokeWidth="1"
+          d="M22 30 Q26 34 32 32 Q36 30 34 28 Q30 30 26 32 Q22 30 22 30"
+          stroke="#8B4513"
+          strokeWidth="2"
           fill="none"
         />
         
-        {/* Shopping cart handle */}
+        {/* Additional decorative roots */}
         <path
-          d="M26 26H30L31 28H25L26 26Z"
-          stroke="#00FF7F"
-          strokeWidth="2"
+          d="M18 30 Q14 34 10 32"
+          stroke="#8B4513"
+          strokeWidth="1.5"
           fill="none"
-          strokeLinecap="round"
+        />
+        <path
+          d="M22 30 Q18 34 14 32"
+          stroke="#8B4513"
+          strokeWidth="1.5"
+          fill="none"
         />
         
-        {/* Shopping cart body */}
-        <path
-          d="M25 28V30H29V28"
-          stroke="#00FF7F"
-          strokeWidth="2"
-          fill="none"
-          strokeLinecap="round"
-        />
-        
-        {/* Cart wheels */}
-        <circle cx="26" cy="32" r="1" fill="#00FF7F" />
-        <circle cx="28" cy="32" r="1" fill="#00FF7F" />
+        {/* EcoShop text with positioned letters */}
+        <text x="45" y="25" className="fill-[#007A3D] font-bold text-xl">
+          E
+        </text>
+        <text x="55" y="25" className="fill-[#007A3D] font-bold text-xl">
+          c
+        </text>
+        <text x="65" y="25" className="fill-[#007A3D] font-bold text-xl">
+          o
+        </text>
+        <text x="80" y="25" className="fill-[#228B22] font-bold text-xl">
+          S
+        </text>
+        <text x="90" y="25" className="fill-[#228B22] font-bold text-xl">
+          h
+        </text>
+        <text x="100" y="25" className="fill-[#228B22] font-bold text-xl">
+          o
+        </text>
+        <text x="110" y="25" className="fill-[#228B22] font-bold text-xl">
+          p
+        </text>
       </svg>
-      <span className="text-2xl font-bold text-[#007A3D]">EcoShop</span>
     </div>
   );
 };
