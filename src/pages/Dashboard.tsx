@@ -6,11 +6,24 @@ import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { User } from "@supabase/supabase-js";
+import EcoPointsSummaryCard from "@/components/rewards/EcoPointsSummaryCard";
+import EcoLeaderboard from "@/components/rewards/EcoLeaderboard";
+import MilestoneTracker from "@/components/rewards/MilestoneTracker";
+import RedeemRewards from "@/components/rewards/RedeemRewards";
+import ShareImpact from "@/components/rewards/ShareImpact";
 
 const Dashboard = () => {
   const [user, setUser] = useState<User | null>(null);
   const navigate = useNavigate();
   const { toast } = useToast();
+
+  // Mock user data for rewards system - in real app this would come from API
+  const [userRewardsData] = useState({
+    ecoPoints: 245,
+    lifetimeCO2Offset: 72,
+    groupBuysParticipated: 4,
+    rewardsRedeemed: 1,
+  });
 
   useEffect(() => {
     const getUser = async () => {
@@ -88,7 +101,34 @@ const Dashboard = () => {
           </Button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Eco Points Summary */}
+        <div className="mb-8">
+          <EcoPointsSummaryCard
+            totalPoints={userRewardsData.ecoPoints}
+            lifetimeCO2Offset={userRewardsData.lifetimeCO2Offset}
+            groupBuysParticipated={userRewardsData.groupBuysParticipated}
+            rewardsRedeemed={userRewardsData.rewardsRedeemed}
+          />
+        </div>
+
+        {/* Main Grid Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+          <EcoLeaderboard />
+          <MilestoneTracker />
+        </div>
+
+        {/* Rewards and Impact Sharing */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+          <RedeemRewards userPoints={userRewardsData.ecoPoints} />
+          <ShareImpact
+            userPoints={userRewardsData.ecoPoints}
+            co2Offset={userRewardsData.lifetimeCO2Offset}
+            userName={displayName || "Eco Hero"}
+          />
+        </div>
+
+        {/* Original Impact Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
           <Card>
             <CardHeader>
               <CardTitle className="text-[#007A3D]">Your Impact</CardTitle>
@@ -126,6 +166,7 @@ const Dashboard = () => {
           </Card>
         </div>
 
+        {/* Quick Actions */}
         <div className="mt-8">
           <Card>
             <CardHeader>
